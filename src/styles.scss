@@ -1,5 +1,5 @@
 @use '@angular/material' as mat;
-@use './style_overrides.scss';
+@use './styles_material_overrides.scss';
 @include mat.core();
 
 html {

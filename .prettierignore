@@ -1,0 +1,8 @@
+dist
+coverage
+.angular
+.claude
+node_modules
+AGENTS.md
+README.md
+package-lock.json

@@ -1,11 +1,11 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { Header } from './layout/header/header';
+import { ApplicationShell } from './layout/application-shell/application-shell';
 
 @Component({
   selector: 'app-root',
-  imports: [Header],
+  imports: [ApplicationShell],
   templateUrl: './app.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './app.scss',
 })
 export class App {}

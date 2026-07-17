@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Header } from './header';
+import { PageTitle } from './page-title';
 
-describe('Header', () => {
-  let component: Header;
-  let fixture: ComponentFixture<Header>;
+describe('PageTitle', () => {
+  let component: PageTitle;
+  let fixture: ComponentFixture<PageTitle>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Header],
+      imports: [PageTitle],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(Header);
+    fixture = TestBed.createComponent(PageTitle);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

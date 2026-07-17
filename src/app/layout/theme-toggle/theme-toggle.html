@@ -1,4 +1,8 @@
-<button matIconButton [matMenuTriggerFor]="themeMenu" [aria-label]="`Change theme. Current theme: ${theme()}`">
+<button
+  matIconButton
+  [matMenuTriggerFor]="themeMenu"
+  [aria-label]="`Change theme. Current theme: ${theme()}`"
+>
   @switch (theme()) {
     @case ('dark') {
       <mat-icon>dark_mode</mat-icon>

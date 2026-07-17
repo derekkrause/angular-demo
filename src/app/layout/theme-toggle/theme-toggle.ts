@@ -1,6 +1,6 @@
-import { Component, computed, effect, inject, model, output, Renderer2 } from '@angular/core';
+import { Component, computed, effect, inject, model, Renderer2 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MatButtonModule, MatIconButton } from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
@@ -10,7 +10,8 @@ const THEME_PREFERENCE_LOCAL_STORAGE_KEY = 'themePreference';
 const DARK_MODE_CLASS_NAME = 'dark-mode';
 const PREFERS_COLOR_SCHEME_DARK = '(prefers-color-scheme: dark)';
 
-const initialTheme: Theme = localStorage.getItem(THEME_PREFERENCE_LOCAL_STORAGE_KEY) as Theme ?? 'auto';
+const initialTheme: Theme =
+  (localStorage.getItem(THEME_PREFERENCE_LOCAL_STORAGE_KEY) as Theme) ?? 'auto';
 const prefersDark: boolean = window.matchMedia?.(PREFERS_COLOR_SCHEME_DARK).matches;
 
 type Theme = 'auto' | 'dark' | 'light';
@@ -18,12 +19,12 @@ type Theme = 'auto' | 'dark' | 'light';
 @Component({
   selector: 'app-theme-toggle',
   imports: [
-    FormsModule, 
-    MatButtonModule, 
-    MatCheckboxModule, 
+    FormsModule,
+    MatButtonModule,
+    MatCheckboxModule,
     MatIconModule,
     MatMenuModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
   ],
   templateUrl: './theme-toggle.html',
   styleUrl: './theme-toggle.scss',
@@ -45,7 +46,7 @@ export class ThemeToggle {
       } else {
         this.#renderer.removeClass(document.body, DARK_MODE_CLASS_NAME);
       }
-    });    
+    });
   }
 
   setTheme(theme: Theme): void {
