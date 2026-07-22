@@ -1,14 +1,12 @@
 import { TitleCasePipe } from '@angular/common';
-import { Component, computed, effect, inject, input, Renderer2, Signal } from '@angular/core';
+import { Component, computed, inject, input, Signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { prefersDark, Theme, ThemeToggleService } from './services/theme-toggle-service';
-
-const DARK_MODE_CLASS_NAME = 'dark-mode';
+import { prefersDark, Theme, ThemeService } from '../../services/theme.service';
 
 type ThemeIcon = 'dark_mode' | 'light_mode' | 'routine';
 type TitleDisplay = 'start' | 'end' | 'none';
@@ -28,8 +26,7 @@ type TitleDisplay = 'start' | 'end' | 'none';
   styleUrl: './theme-toggle.scss',
 })
 export class ThemeToggle {
-  #renderer = inject(Renderer2);
-  #themeService = inject(ThemeToggleService);
+  #themeService = inject(ThemeService);
 
   titleDisplay = input<TitleDisplay>('none');
 
@@ -40,7 +37,7 @@ export class ThemeToggle {
 
     if (theme !== 'system') return theme;
 
-    return `System (${prefersDark ? 'Dark' : 'Light'})`
+    return `System (${prefersDark ? 'Dark' : 'Light'})`;
   });
 
   selectedModeIcon = computed<ThemeIcon>(() => {
@@ -56,16 +53,6 @@ export class ThemeToggle {
         return 'routine';
     }
   });
-
-  constructor() {
-    effect(() => {
-      if (this.isDarkMode()) {
-        this.#renderer.addClass(document.body, DARK_MODE_CLASS_NAME);
-      } else {
-        this.#renderer.removeClass(document.body, DARK_MODE_CLASS_NAME);
-      }
-    });
-  }
 
   setTheme(theme: Theme): void {
     this.#themeService.setTheme(theme);

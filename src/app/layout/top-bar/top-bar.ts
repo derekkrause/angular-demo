@@ -3,7 +3,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { ActiveRouteService } from '@app/shared/services/active-route.service';
-import { ThemeToggleService } from '../theme-toggle/services/theme-toggle-service';
+import { ThemeService } from '../../core/theme/services/theme.service';
 
 @Component({
   selector: 'app-top-bar',
@@ -13,7 +13,7 @@ import { ThemeToggleService } from '../theme-toggle/services/theme-toggle-servic
 })
 export class TopBar {
   readonly #activeRouteService = inject(ActiveRouteService);
-  readonly #themeService = inject(ThemeToggleService);
+  readonly #themeService = inject(ThemeService);
 
   icon: Signal<string> = this.#themeService.githubIcon;
 

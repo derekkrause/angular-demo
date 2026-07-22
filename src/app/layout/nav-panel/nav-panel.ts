@@ -1,11 +1,11 @@
 import { Component, computed, inject } from '@angular/core';
-import { ThemeToggle } from '../theme-toggle/theme-toggle';
-import { PageTitle } from '../page-title/page-title';
-import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 import { RouterLink } from '@angular/router';
 import { ActiveRouteService } from '@app/shared/services/active-route.service';
+import { ThemeToggle } from '../../core/theme/components/theme-toggle/theme-toggle';
+import { PageTitle } from '../page-title/page-title';
 
 /* 
   NavOption contains a path separate from title since a title can have whitespaces,
@@ -60,10 +60,10 @@ export class NavPanel {
 
   protected readonly activeLink = computed<NavPath | undefined>(() => {
     const firstSegment = this.#url().split('?')[0].split('#')[0].split('/')[1];
-    
+
     return this.#isNavPath(firstSegment) ? firstSegment : undefined;
   });
-  
+
   protected readonly navOptions: readonly NavOption[] = NAV_OPTIONS;
 
   #isNavPath(path: string | undefined): path is NavPath {

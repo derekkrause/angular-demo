@@ -1,0 +1,18 @@
+@use '@core/theme/global-material-overrides/_material-overrides.scss';
+
+// echart mapping from Angular Material
+:root {
+  --app-chart-primary: var(--mat-sys-primary);
+  --app-chart-secondary: var(--mat-sys-secondary);
+  --app-chart-tertiary: var(--mat-sys-tertiary);
+  --app-chart-error: var(--mat-sys-error);
+
+  --app-chart-text: var(--mat-sys-on-surface);
+  --app-chart-muted-text: var(--mat-sys-on-surface-variant);
+
+  --app-chart-surface: var(--mat-sys-surface);
+  --app-chart-surface-container: var(--mat-sys-surface-container);
+
+  --app-chart-outline: var(--mat-sys-outline);
+  --app-chart-outline-variant: var(--mat-sys-outline-variant);
+}

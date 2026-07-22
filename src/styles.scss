@@ -1,19 +1,19 @@
 @use '@angular/material' as mat;
-@use './styles_material_overrides.scss';
+@use '@core/theme/theme-styles.scss';
+
 @include mat.core();
 
 html {
   color-scheme: light;
-  @include mat.theme(
-    (
-      color: (
-        primary: mat.$cyan-palette,
-        tertiary: mat.$orange-palette,
-      ),
-      typography: Inter,
-      density: -2,
-    )
-  );
+  /* prettier-ignore */
+  @include mat.theme((
+    color: (
+      primary: mat.$cyan-palette,
+      tertiary: mat.$orange-palette,
+    ),
+    typography: Inter,
+    density: -2,
+  ));
 
   @include mat.system-classes();
 }
@@ -30,6 +30,6 @@ body {
   height: 100vh;
 }
 
-.p-8 {
-  padding: 8px;
+.container {
+  padding: 12px;
 }

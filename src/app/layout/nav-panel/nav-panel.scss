@@ -1,4 +1,4 @@
-@use "@angular/material" as mat;
+@use '@angular/material' as mat;
 
 $padding-y: 24px;
 $padding-2y: $padding-y * 2;
@@ -11,9 +11,10 @@ $padding-2y: $padding-y * 2;
   align-items: center;
   background: var(--mat-sys-surface-container-low);
 
+  /* prettier-ignore */
   @include mat.list-overrides((
     active-indicator-shape: 6px,
-  ))
+  ));
 }
 
 mat-nav-list {
