@@ -1,4 +1,5 @@
 import { inject, Service, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router, TitleStrategy } from '@angular/router';
 import { filter } from 'rxjs';
 
@@ -10,10 +11,19 @@ export class ActiveRouteService {
   readonly #title = signal<string>(this.#readCurrentTitle());
   readonly title = this.#title.asReadonly();
 
+  readonly #url = signal<string>(this.#router.url);
+  readonly url = this.#url.asReadonly();
+
   constructor() {
     this.#router.events
-      .pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd))
-      .subscribe(() => this.#title.set(this.#readCurrentTitle()));
+      .pipe(
+        takeUntilDestroyed(),
+        filter((event): event is NavigationEnd => event instanceof NavigationEnd)
+      )
+      .subscribe(() => {
+        this.#title.set(this.#readCurrentTitle());
+        this.#url.set(this.#router.url);
+      });
   }
 
   #readCurrentTitle(): string {

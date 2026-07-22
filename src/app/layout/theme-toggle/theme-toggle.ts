@@ -1,20 +1,17 @@
-import { Component, computed, effect, inject, model, Renderer2 } from '@angular/core';
+import { TitleCasePipe } from '@angular/common';
+import { Component, computed, effect, inject, input, Renderer2, Signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { prefersDark, Theme, ThemeToggleService } from './services/theme-toggle-service';
 
-const THEME_PREFERENCE_LOCAL_STORAGE_KEY = 'themePreference';
 const DARK_MODE_CLASS_NAME = 'dark-mode';
-const PREFERS_COLOR_SCHEME_DARK = '(prefers-color-scheme: dark)';
 
-const initialTheme: Theme =
-  (localStorage.getItem(THEME_PREFERENCE_LOCAL_STORAGE_KEY) as Theme) ?? 'auto';
-const prefersDark: boolean = window.matchMedia?.(PREFERS_COLOR_SCHEME_DARK).matches;
-
-type Theme = 'auto' | 'dark' | 'light';
+type ThemeIcon = 'dark_mode' | 'light_mode' | 'routine';
+type TitleDisplay = 'start' | 'end' | 'none';
 
 @Component({
   selector: 'app-theme-toggle',
@@ -25,18 +22,39 @@ type Theme = 'auto' | 'dark' | 'light';
     MatIconModule,
     MatMenuModule,
     MatSlideToggleModule,
+    TitleCasePipe,
   ],
   templateUrl: './theme-toggle.html',
   styleUrl: './theme-toggle.scss',
 })
 export class ThemeToggle {
   #renderer = inject(Renderer2);
+  #themeService = inject(ThemeToggleService);
 
-  theme = model<Theme>(initialTheme);
-  isDarkMode = computed<boolean>(() => {
-    const theme = this.theme();
+  titleDisplay = input<TitleDisplay>('none');
 
-    return theme === 'dark' || (theme === 'auto' && prefersDark);
+  isDarkMode: Signal<boolean> = this.#themeService.isDarkMode;
+  prefersDark: boolean = prefersDark;
+  theme = computed<string>(() => {
+    const theme = this.#themeService.theme();
+
+    if (theme !== 'system') return theme;
+
+    return `System (${prefersDark ? 'Dark' : 'Light'})`
+  });
+
+  selectedModeIcon = computed<ThemeIcon>(() => {
+    const theme = this.#themeService.theme();
+
+    switch (theme) {
+      case 'dark':
+        return 'dark_mode';
+      case 'light':
+        return 'light_mode';
+      case 'system':
+      default:
+        return 'routine';
+    }
   });
 
   constructor() {
@@ -50,7 +68,6 @@ export class ThemeToggle {
   }
 
   setTheme(theme: Theme): void {
-    this.theme.set(theme);
-    localStorage.setItem(THEME_PREFERENCE_LOCAL_STORAGE_KEY, theme);
+    this.#themeService.setTheme(theme);
   }
 }

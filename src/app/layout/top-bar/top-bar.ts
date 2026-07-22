@@ -3,6 +3,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { ActiveRouteService } from '@app/shared/services/active-route.service';
+import { ThemeToggleService } from '../theme-toggle/services/theme-toggle-service';
 
 @Component({
   selector: 'app-top-bar',
@@ -12,6 +13,9 @@ import { ActiveRouteService } from '@app/shared/services/active-route.service';
 })
 export class TopBar {
   readonly #activeRouteService = inject(ActiveRouteService);
+  readonly #themeService = inject(ThemeToggleService);
+
+  icon: Signal<string> = this.#themeService.githubIcon;
 
   protected readonly title: Signal<string> = this.#activeRouteService.title;
 }
