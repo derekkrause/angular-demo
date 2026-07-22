@@ -1,65 +1,72 @@
-# AngularDemoProject
+# Angular Demo Project
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.19.
+An evolving Angular demonstration application for experimenting with modern Angular patterns, Angular Material, theming, and data visualization.
 
-## Development server
+The application currently provides a responsive dashboard shell with navigation, light, dark, and system theme options, and an accessible ECharts horizontal bar chart displaying sample product-category data. The dashboard and not-found pages are loaded lazily through the Angular router.
 
-This project uses pnpm through Corepack. Install dependencies with:
+## Technology
 
-```bash
-corepack pnpm install
-```
+- Angular 22.0.7
+- Angular CLI and build tooling 22.0.7
+- Angular Material and CDK 22.0.5
+- TypeScript 6.0.3
+- Apache ECharts 6.1.0
+- RxJS 7.8.2
+- Vitest 4.1.10
+- pnpm 11.15.1
 
-To start a local development server, run:
+The authoritative dependency declarations are in [`package.json`](./package.json), with exact resolved versions recorded in [`pnpm-lock.yaml`](./pnpm-lock.yaml).
 
-```bash
-corepack pnpm start
-```
+## Getting started
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-corepack pnpm ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+This project uses pnpm 11.15.1. With pnpm installed globally, install dependencies with:
 
 ```bash
-corepack pnpm ng generate --help
+pnpm install
 ```
 
-## Building
-
-To build the project run:
+Start the local development server with:
 
 ```bash
-corepack pnpm build
+pnpm start
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+The development server opens the application at `http://localhost:4200/` and reloads when source files change.
 
-## Running unit tests
+## Development commands
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+Run a production build:
 
 ```bash
-corepack pnpm test
+pnpm build
 ```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+Run unit tests:
 
 ```bash
-corepack pnpm ng e2e
+pnpm test
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Run lint checks:
 
-## Additional Resources
+```bash
+pnpm lint
+```
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Check formatting:
+
+```bash
+pnpm format:check
+```
+
+Generate an Angular artifact:
+
+```bash
+pnpm ng generate component component-name
+```
+
+For the available schematics and options, run `pnpm ng generate --help`.
+
+## Additional resources
+
+See the [Angular CLI documentation](https://angular.dev/tools/cli) for complete command guidance.
