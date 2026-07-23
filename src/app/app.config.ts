@@ -1,15 +1,10 @@
-import {
-  ApplicationConfig,
-  inject,
-  provideAppInitializer,
-  provideBrowserGlobalErrorListeners,
-} from '@angular/core';
+import { ApplicationConfig, inject, provideAppInitializer, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
-import { routes } from './app.routes';
-import { MatIconRegistry } from '@angular/material/icon';
 import { provideHttpClient } from '@angular/common/http';
+import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
+import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -17,10 +12,10 @@ export const appConfig: ApplicationConfig = {
       const sanitizer = inject(DomSanitizer);
       const iconRegistry = inject(MatIconRegistry);
       iconRegistry.setDefaultFontSetClass('material-symbols-outlined');
-      registerIcon('github_black', '/github-icons/github_black.svg', sanitizer, iconRegistry);
-      registerIcon('github_white', '/github-icons/github_white.svg', sanitizer, iconRegistry);
-      registerIcon('github_lockup_black', '/github-icons/github_lockup_black.svg', sanitizer, iconRegistry);
-      registerIcon('github_lockup_white', '/github-icons/github_lockup_white.svg', sanitizer, iconRegistry);
+      registerIcon('github_black', 'github-icons/github_black.svg', sanitizer, iconRegistry);
+      registerIcon('github_white', 'github-icons/github_white.svg', sanitizer, iconRegistry);
+      registerIcon('github_lockup_black', 'github-icons/github_lockup_black.svg', sanitizer, iconRegistry);
+      registerIcon('github_lockup_white', 'github-icons/github_lockup_white.svg', sanitizer, iconRegistry);
     }),
     provideBrowserGlobalErrorListeners(),
     provideHttpClient(),
