@@ -9,5 +9,5 @@ import { ImageComponent } from '@shared/ui/image/image';
   styleUrl: './page-title.scss',
 })
 export class PageTitle {
-  protected readonly titleImageSrc = '/recall_logo.svg';
+  protected readonly titleImageSrc = 'recall_logo.svg';
 }
