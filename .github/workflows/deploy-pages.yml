@@ -5,7 +5,6 @@ on:
     branches:
       - main
 
-  # Allows manual deployment from the Actions tab.
   workflow_dispatch:
 
 permissions:
@@ -26,14 +25,19 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v6
 
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
       - name: Set up Node.js
         uses: actions/setup-node@v6
         with:
           node-version: '22'
-          cache: npm
+          cache: pnpm
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
@@ -47,7 +51,7 @@ jobs:
             BASE_HREF="/${{ github.event.repository.name }}/"
           fi
 
-          npx ng build \
+          pnpm exec ng build \
             --configuration production \
             --base-href "$BASE_HREF" \
             --output-path dist/site
