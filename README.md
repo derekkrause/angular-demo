@@ -4,6 +4,8 @@ An evolving Angular demonstration application for experimenting with modern Angu
 
 The application currently provides a responsive dashboard shell with navigation, light, dark, and system theme options, and an accessible ECharts horizontal bar chart displaying sample product-category data. The dashboard and not-found pages are loaded lazily through the Angular router.
 
+You can test out the demo here: https://derekkrause.github.io/angular-demo-project/dashboard
+
 ## Technology
 
 - Angular 22.0.7
